@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="margin-top:50px; margin-bottom: 100px;">
+    {% if user_form.errors %}
+    <!--  Users' errors are here-->
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Error!</strong>
+        {% for error in user_form.errors %}
+        <p>
+        <h5>{{user_form.errors}}</h5>
+        </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+             {{ form.as_p }}
+            <center>
+                <button type="submit" style="margin-top:20px;" class="btn btn-primary">Sign up</button>
+            </center>
+        </form>
+    </div>
+</div>
+{% endblock %}
